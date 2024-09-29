@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lemon Hub [Subpage]</title>
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        
+        <!-- Google Icons-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <style>
+            .material-icons {
+                cursor: pointer;
+            }
+            #down_button {
+                transition: 500ms;
+                
+                padding: 10px;
+                position: relative;
+                left: -10px;
+                top: -15px;
+                border-radius: 100%;
+            }
+            #down_button:hover {
+                background-color: rgb(186, 186, 186, 0.15);
+            }
+        </style>
+        
+        <style>
+            @keyframes pageTransition {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @keyframes openNav {
+                from {
+                    left: 100%;
+                }
+                to {
+                    left: 54%;
+                }
+            }
+            @keyframes closeNav {
+                from {
+                    left: 54%;
+                }
+                to{
+                    left: 100%;
+                }
+            }
+        </style> <!-- Animations and Transitions -->
+        <style>
+            svg {
+                z-index: -1;
+            }
+            #lemon-body {
+                transform: rotate(-45deg);
+            }
+        </style> <!-- SVG -->
+        <style>
+            body {
+                margin: 0;
+                overflow-x: hidden;
+                
+                font-family: 'Poppins';
+            }
+            
+            header {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                
+                padding: 17px;
+                position: fixed;
+                
+                width: 600px;
+                
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                transition: 500ms;
+            }
+            header:hover {
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+            header h1 {
+                user-select: none;
+            }
+            header a {
+                font-size: 20px;
+                
+                position: relative;
+                left: -30px;
+                
+                cursor: pointer;
+                
+            }
+            p {
+                margin-bottom: 40px;
+                
+                transition: 500ms;
+            }
+            p:hover {
+                font-size: 18px;
+            }
+            svg {
+                color: white;
+            }
+            button {
+                border: 0;
+                border-radius: 20px;
+                
+                width: 200px;
+                height: 75px;
+                
+                background-color: rgb(247, 243, 27);
+                color: white;
+                
+                font-weight: bold;
+                font-size: 30px;
+                font-family: 'Poppins';
+                
+                cursor: pointer;
+                transition: 500ms;
+            }
+            button:hover {
+                background-color: rgb(255, 208, 0);
+                transform: rotate(-10deg) scale(1.1);
+            }
+            
+        </style> <!-- General Elements -->
+        <style>
+            .page {
+                padding: 35px;
+                
+            }
+            .page h1 {
+                font-size: 53px;
+            }
+            
+            #menu, #exit {
+                font-size: 60px;
+                
+                position: fixed;
+                left: 500px;
+                top: 20px;
+            }
+            #menu { color: black; }
+            #exit { color: white; display: none;}
+            
+            #navbar {
+                background-color: black;
+                
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 100%;
+                z-index: 2;
+                
+                width: 40%;
+                height: 100%;
+            }
+            #navbar a {
+                color: white;
+                
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 25px;
+                text-align: right;
+                
+                margin-top: 100px;
+                margin-bottom: -53px;
+                
+                display: block;
+            }
+            #navbar a:hover {
+                text-decoration: underline;
+            }
+        </style> <!-- Navigation and Pages-->
+        <style>
+            #profile {
+                background: linear-gradient(45deg, rgb(255, 247, 0), rgb(255, 174, 0));
+                color: white;
+                
+                padding: 10px;
+                border-radius: 10px;
+                
+                cursor: pointer;
+            }
+            #profile h2, #profile h3 {
+                position: relative;
+                left: -165px;
+                
+                float: right;
+                clear: both;
+            }
+            #profile h3 {
+                top: -109px;
+                left: -132px;
+            }
+        </style> <!-- Profile -->
+        <style>
+            .newUpdate {
+                background: linear-gradient(45deg, rgb(255, 247, 0), rgb(255, 174, 0));
+                color: white;
+                
+                border-radius: 10px;
+                padding: 20px;
+                
+                user-select: none;
+            }
+            .newUpdate p {
+                font-size: 18px;
+            }
+        </style> <!-- News & Updates -->
+        <style>
+            html, body {
+            	width: 100%;
+                height: 100%;
+            	margin: 0px;
+            	padding: 0px;
+                width: calc(100% + 1px);
+            }
+            
+            canvas {
+            	position: fixed;
+            	left: -181px;
+            	top: -181px;
+            	
+            	z-index: -2;
+            	transform: scale(4.04);
+            }
+            
+            canvas:focus {
+            	outline: none;
+            }
+            #projects {
+                background-image: url("https://www.khanacademy.org/computer-programming/lemon-hub-background/5249228906872832/4921998590787584.png");
+                background-size: cover;
+                background-attachment: fixed;
+                
+                margin: -10%;
+                padding: 62px;
+                width: 100%;
+                
+                color: white;
+            }
+            #filters {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #filters button {
+                background-color: rgb(237, 237, 237);
+                color: rgb(89, 89, 89);
+                
+                padding: 7px;
+                border-radius: 10px;
+                margin-right: 10px;
+                margin-bottom: 9px;
+                
+                width: fit-content;
+                height: 50px;
+                font-size: 20px;
+                
+                cursor: pointer;
+                transition: 500ms;
+            }
+            #filters button:hover {
+                background-color: rgb(217, 217, 217);
+                transform: rotate(0deg);
+            }
+            
+            
+            #projectList {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .project {
+                background-color: white;
+                color: black;
+                border-radius: 10px;
+                padding: 20px;
+                
+                width: fit-content;
+                
+                margin-top: 20px;
+                margin-left: -9px;
+                margin-right: 15px;
+            }
+            .project img {
+                border-radius: 10px 10px 0 0;
+                
+                margin: -20px;
+                margin-bottom: 5px;
+                width: 250px;
+            }
+            .project div {
+                padding: 5px;
+            }
+            .project h3 {
+                text-align: center;
+                
+                margin-bottom: -20px;
+            }
+            .project h4 {
+                background-color: black;
+                color: white;
+                border-radius: 10px;
+                
+                
+                width: fit-content;
+                margin-bottom: -15px;
+            }
+        </style> <!-- Projects -->
+    </head>
+    <body>
+        <nav id='navbar'>
+        
+            <i class='material-icons' id='exit'>close</i>
+            <a href='javascript:nav(1)'>Home</a>
+            <a href='javascript:nav(2)'>About Me</a>
+            <a href='javascript:nav(3)'>Subscribe</a>
+            <a href='javascript:nav(4)'>Projects</a>
+            <a href='javascript:nav(5)'>News & Updates</a>
+        </nav>
+        
+        <section class='page'>
+        <h1 style='position:absolute;
+        top: -20px;'>Lemon Hub</h1>
+        <h2 style='position:absolute;
+        top: 87px; left: 37px'>subscription page</h2>
+        
+        
+        <svg width="600" height="500">
+        <defs>
+        
+        <clipPath id='shape'>
+            <ellipse id='lemon-body' cx="-76" cy="327" rx="122" ry="92" fill="#F7DC6F" />
+      
+            <circle cx="102" cy="362" r="36" fill="#F7DC6F" />
+            <circle cx="260" cy="209" r="36" fill="#F7DC6F" />
+            </clipPath>
+        
+        </defs>
+        
+        <image href='https://www.khanacademy.org/computer-programming/lemon-hub-background/5249228906872832/4900762259210240.png' width='600' height='500' clip-path="url(#shape)"></image>
+        </svg>
+        <i class='material-icons' id='down_button' style="
+        font-size: 50px;
+        
+        position: relative;
+        left: 46%;
+        ">arrow_downward</i>
+        
+        <h1>Hey there!</h1>
+        <p>Welcome to the Lemon Hub, where you can see updates and releases on all my projects. And by putting a period <code>"."</code> in the thread labeled <b>Subscribe Here</b>, you'll be notified when I make a new post.</p>
+        <button onclick='javascript:window.open("https://www.khanacademy.org/computer-programming/lemon-hub/5979716894244864?qa_expand_key=ag5zfmtoYW4tYWNhZGVteXJACxIIVXNlckRhdGEiHWthaWRfODQ3MzQ1OTIxNTIzMjc1ODQzMTQ5OTcwDAsSCEZlZWRiYWNrGICA25q4oskIDA&qa_expand_type=comment")'>Try it out?</button>
+        
+        </section> <!-- Homepage -->
+        <section class='page'>
+            <svg width='826' height='200' style='position:absolute; left:-50px;'>
+            <defs>
+                <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="100%" height="100%">
+                    <image href='https://www.khanacademy.org/computer-programming/lemon-hub-background/5249228906872832/4900762259210240.png' x="43" y="0" width="100%" height="100%"></image>
+                </pattern>
+            </defs> 
+            <circle cx='456' cy='82' r='57' fill='none' stroke='url(#imgPattern)' stroke-width='15'></circle>
+            <rect x='446' y='47' width='20' height='20' fill='url(#imgPattern)'></rect>
+            <rect x='446' y='75' width='20' height='48' fill='url(#imgPattern)'></rect>
+                
+            
+            </svg>
+            <h1>About Me</h1>
+            <h3>Well, I love coding (obviously). I like to player soccer, although I'm not on a team, and I've been playing the violin for 3 years. I'm currently learning to code in Python and trying to make games outside of KA. My two favorite colors are yellow and blue (can't decide which one). I think that's it...</h3>
+            <h1>My Profile</h1>
+            <div id='profile' onclick='javascript:window.open("https://khanacademy.org/profile/gaminglemonz")'>
+                <img src='https://cdn.kastatic.org/images/avatars/svg/boggle-green.svg' width='150'>
+                <h2>Lemon Games</h2>
+                <h3>@gaminglemonz<br>31,000+ Energy Points</h3>
+            </div>
+        </section> <!-- About Me -->
+        <section class='page'>
+            <h1>Subscribe</h1>
+            <svg width="600" height="600" style="position:absolute; left:-19; top: 0">
+            
+            <defs>
+                <clipPath id='shape2' >
+                <rect x='347' y='66' width='176' height='100' rx='20'></rect>
+                </clipPath>
+            </defs>
+            
+            <image href='https://www.khanacademy.org/computer-programming/lemon-hub-background/5249228906872832/4900762259210240.png' clip-path='url(#shape2)' width='600' height='600'></image>
+            <polygon points="410,83 470,117 410,151" fill='white'/>
+            </svg>
+            <h3>Wanna subscribe? Awesome! Just head down to the Tips and Thanks, and put a period in the thread says <i>Subscribe Here</i>.</h3>
+            <h2>Why do I have to put a period?</h2>
+            <h3>You don't have to put a period exactly, anything under three characters works. (Ex: "xD"). Anything over 3 characters will spam other subscribers, and put junk in the thread. If you do see someone posting something they shouldn't in the thread, flag it.</h3>
+        </section>
+        <section class='page'>
+            <div id='projects'>
+                <h1>Projects</h1>
+                
+                <!--<h2>Filters</h2>-->
+                <!--<div id='filters'>-->
+                <!--    <button class='filter'>Games</button>-->
+                <!--    <button class='filter'>Webpages</button>-->
+                <!--    <button class='filter'>Tutorials</button>-->
+                <!--    <button class='filter'>Contest Entry</button>-->
+                <!--    <button class='filter'>Miscellaneous</button>-->
+                <!--</div>-->
+                <div id='projectList'></div>
+            </div>
+        </section> <!-- Projects -->
+        <section class='page'>
+            <h1>News & Updates</h1>
+            <div id='news'></div>
+        </section> <!-- News & Updates -->
+        
+        <i class='material-icons' id='menu'>menu</i>
+        <script></script> <!-- Reload button -->
+        <script type='module'>
+            const pages = document.getElementsByClassName('page')
+            
+            window.nav = (index) => {
+                for (let i = 0; i < pages.length; i ++){
+                    if (i === index - 1) {
+                        pages[i].style.display = 'block';
+                        pages[i].style.animation = 'pageTransition 1s';
+                    } else {
+                        pages[i].style.display = 'none';
+                    }
+                }
+                pages[index-1].style.display = 'block'
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth',
+                })
+            }
+            
+            const nav = window.nav;
+            nav(1)
+        </script> <!-- Page Switching -->
+        <script type='module'>
+            const navbar = document.getElementById('navbar')
+            const menu = document.getElementById('menu')
+            const exit = document.getElementById('exit')
+            
+            
+            window.openNav = () => {
+                navbar.style.animation = 'openNav 500ms'
+                navbar.style.left = '54%';
+                menu.style.display = 'none'
+                exit.style.display = 'block'
+            }
+            openNav = window.openNav;
+            menu.addEventListener('click', openNav)
+            
+            window.closeNav = () => {
+                navbar.style.animation = 'closeNav 500ms'
+                navbar.style.left = '100%';
+                menu.style.display = 'block'
+                exit.style.display = 'none'
+            }
+            closeNav = window.closeNav;
+            exit.addEventListener('click', closeNav)
+        </script> <!-- Navbar -->
+        <script type='module'>
+            const down_button = document.getElementById('down_button')
+            
+            window.scrollDown = () => {
+                window.scroll({
+                    top: 600,
+                    left: 0,
+                    behavior: "smooth"
+                })
+            }
+            scrollDown = window.scrollDown
+            down_button.addEventListener('click', scrollDown)
+        </script> <!-- Scroll Down Button -->
+        <script type='module'>
+            const news = document.getElementById("news")
+            const newsContent = [
+                {
+                    title: "Welcome to my subpage!",
+                    date: [9, 16, 24],
+                    content: "Welcome to the News & Updates page! Here, you'll find updates about projects, or sometimes myself. You can also receive updates by subscribing to the News Thread."
+                },
+            ];
+            
+            const sortMonth = (monthNum) => {
+                switch (monthNum) {
+                    case 1: 
+                        return 'January';
+                    case 2:
+                        return 'February';
+                    case 3:
+                        return 'March';
+                    case 4:
+                        return 'April';
+                    case 5:
+                        return 'May';
+                    case 6:
+                        return 'June';
+                    case 7:
+                        return 'July';
+                    case 8:
+                        return 'August';
+                    case 9:
+                        return 'September';
+                    case 10:
+                        return 'October';
+                    case 11:
+                        return 'November';
+                    case 12:
+                        return 'December';
+                    default:
+                        return '?';
+                }
+            };
+
+            
+            window.updateNews = () => {
+                for (let i = 0; i < newsContent.length; i ++){
+                    const newUpdate = document.createElement("div");
+                    const update = newsContent[i]
+                    newUpdate.innerHTML = `
+                    <h2><i>${sortMonth(update.date[0])} ${update.date[1]}, 20${update.date[2]}</i></h2>
+                    <h2>${update.title}</h2>
+                    <p>${update.content}</p>
+                    `
+                    newUpdate.classList.add("newUpdate")
+                    
+                    news.appendChild(newUpdate)
+                }
+                
+            }
+            updateNews = window.updateNews
+            updateNews()
+        </script> <!-- News & Updates -->
+        <script type='module'>
+            let filters = []
+            
+            const projectList = document.getElementById('projectList')
+            const filterList = document.getElementsByClassName('filter')
+            const projects = [
+                {
+                    name: 'new intro?',
+                    url: 'https://www.khanacademy.org/computer-programming/new-intro/6226630139101184/',
+                    thumb: 'https://www.khanacademy.org/computer-programming/new-intro/6226630139101184/5578729486467072.png',
+                    filters: ['Miscellaneous', 'Animation'],
+                },
+                {
+                    name: 'Black \'n\' White',
+                    url: 'https://www.khanacademy.org/computer-programming/black-n-white-game/6144760533663744',
+                    thumb: 'https://www.khanacademy.org/computer-programming/black-n-white-game/6144760533663744/6645969359126528.png',
+                    filters: ["Game"],
+                },
+            ]
+            
+            for (let i = 0; i < projects.length; i ++){
+                const newProject = document.createElement("div")
+                const project = projects[i]
+                
+                newProject.innerHTML = `
+                <img onclick='window.open(${project.url})'src='${project.thumb}'><h3>${project.name}</h3>
+                `
+                for (var j in project.filters){
+                    newProject.innerHTML += `<div><h4 style='padding:10px;'>${project.filters[j]}</h4></div>`
+                }
+                
+                
+                newProject.classList.add('project')
+                newProject.addEventListener('click', function(){
+                    window.open(project.url)
+                })
+                
+                projectList.appendChild(newProject)
+                
+            }
+            
+            for (var i in filterList){
+                filter = filterList[i]
+                
+                filter.addEventListener('click', function(){
+                    filters.push('games')
+                })
+            }
+        </script> <!-- Projects -->
+        
+    <script type='module'>
+        window.addEventListener('keydown', function(e){
+            if (e.code === 'Backquote'){ 
+                document.body.innerHTML = `
+                <div style='margin: 0; color: white; background-color:rgb(255, 208, 0); background-size: cover; width: 100%; height: 100%; font-family:"arial black"'>
+                <h1 style='position:absolute; left: 82px; top: 154px; font-size: 72px'><i>Lemon Hub</i></h1>
+                <h2 style='position:absolute; left: 83px; top: 273px; font-size: 45px'>Subscription Page</h2>
+                </div>
+                `;
+            }
+        });
+    </script>
+        <!--Save function. All code in the tag below belongs to Bluebird @BirdWatcher03. All credit goes to him.-->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.3/dist/html2canvas.min.js"></script>
+    <script>
+      var save = function () {
+        html2canvas(document.body, {
+          allowTaint: false,
+          useCORS: true,
+          width: document.documentElement.clientWidth,
+          height: document.documentElement.clientWidth,
+        }).then(function (canvas) {
+          b64Img = canvas.toDataURL();
+          if (b64Img.length > 1033500) {
+            //
+            alert(
+              "Oh no, the thumbnail is to big! Try making your webpage display size smaller."
+            );
+          } else {
+            window.top.postMessage(b64Img, "https://www.khanacademy.org/");
+          }
+        });
+      };
+      var handleSave = function (e) {
+        if (JSON.parse(e.data).screenshot) {
+          setTimeout(function () {
+            console.log("Saving...");
+            save();
+          }, 1000);
+        }
+      };
+      window.parent.savers = window.parent.savers || 0;
+      window.parent.addEventListener("message", handleSave);
+      window.parent.savers += 1;
+      for (
+        window.parent.savers;
+        window.parent.savers > 1;
+        window.parent.savers -= 1
+      ) {
+        window.parent.removeEventListener("message", handleSave);
+      }
+    </script>
+
+    </body>
+</html>
+<!--
+
+LEMON HUB
+Project started Sept. 9th, 2024
+Finished Sept. 2024
+
+Note:
+Don't stay on the projects page too long; it gets laggy
+
+@CREDITS
+
+Bluebird
+Thumbnail Saving - Press ` to find thumbnail
+
+@HOWTOSUB
+Post a '.' in the thread marked 'Subscribe Here'
+
+-->
